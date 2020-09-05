@@ -1,6 +1,4 @@
-package concurrent;
-
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+package thread.concurrent;
 
 public class TestConcurrent {
 
