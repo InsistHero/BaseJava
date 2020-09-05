@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 冒泡排序
+ *
+ * 比较各自的优劣、各种算法的思想及其使用场景。还有要会分析算法的时间和空间复杂度
+ *
  * @author zhijingzhuo
  * @since 2020/09/05 16:10
  */
@@ -60,4 +63,6 @@ public class BubbleSort {
         a = bubbleSort(a);
         log.info("a:{}",JSONArray.toJSONString(a));
     }
+
+    // https://www.cnblogs.com/bigdata-stone/p/10464243.html
 }
