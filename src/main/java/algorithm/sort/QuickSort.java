@@ -41,7 +41,6 @@ public class QuickSort {
 
         if(high>low){
             int mid = getMiddle(arr,low,high);
-            log.info("mid:{}",arr[mid]);
             quickSort(arr,low,mid-1);
             quickSort(arr,mid+1,high);
         }
