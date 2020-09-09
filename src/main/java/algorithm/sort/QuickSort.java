@@ -7,9 +7,11 @@ import lombok.extern.slf4j.Slf4j;
  * 快速排序
  *
  * 比较各自的优劣、各种算法的思想及其使用场景。还有要会分析算法的时间和空间复杂度
+ *
  * 最佳情况：T(n) = O(nlogn)
  * 最差情况：T(n) = O(n2)
  * 平均情况：T(n) = O(nlogn)
+ * 快速排序是不稳定的，其时间平均时间复杂度是O(nlgn)。
  *
  * @author zhijingzhuo
  * @since 2020/09/06 16:10
