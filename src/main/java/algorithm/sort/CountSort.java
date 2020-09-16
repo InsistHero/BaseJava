@@ -54,16 +54,6 @@ public class CountSort {
 
     }
 
-    public static int max(int[] arr) {
-        int max = Integer.MIN_VALUE;
-        for(int ele : arr) {
-            if(ele > max)
-            max = ele;
-        }
-
-        return max;
-    }
-
     public static void main(String[] args) {
         int[] a = {9,10,11,1,5,6,3};
         a = countSort(a);
