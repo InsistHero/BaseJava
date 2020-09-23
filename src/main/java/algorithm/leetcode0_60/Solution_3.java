@@ -23,8 +23,42 @@ import java.util.Set;
 @Slf4j
 public class Solution_3 {
 
-    public int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring(String s) {
 
-        return 0;
+        if(s == null){
+            return 0;
+        }
+        if(" ".equals(s) || " ".equals(s.trim())){
+            return 1;
+        }
+
+        HashSet<Character> set = new HashSet<Character>();
+        int len = s.length();
+        int resultLen = 0;
+        int startIndex = -1;
+        for(int i=0;i<len;i++){
+
+            if(i!=0){
+                set.remove(s.charAt(i-1));
+            }
+
+            while(startIndex+1<=len-1 && !set.contains(s.charAt(startIndex+1))){
+                set.add(s.charAt(startIndex+1));
+                startIndex++;
+            }
+            resultLen = Math.max(resultLen,startIndex+1-i);
+        }
+
+        return resultLen;
+    }
+
+    public static void main(String[] args) {
+        //String s = "abcabcbb";
+        //String s = "bbbbb";
+        //String s = "abcaefgabcjklmnbb";
+        //String s = " ";
+        String s = "c";
+        int result = lengthOfLongestSubstring(s);
+        log.info("长度:{}",result);
     }
 }

@@ -47,16 +47,20 @@ class Solution_2 {
 
             if(result==null){
                 result = new ListNode(cur);
-
                 curNode = result;
             }else{
                 ListNode res = new ListNode(cur);
-
                 curNode.next = res;
                 curNode = curNode.next;
             }
-            l1 = l1.next;
-            l2 = l2.next;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+        }
+
+        if(next!=0){
+            ListNode res = new ListNode(next);
+            curNode.next = res;
+            curNode = curNode.next;
         }
 
         return result;
@@ -64,13 +68,19 @@ class Solution_2 {
 
 
     public static void main(String[] args) {
-        ListNode node1 = new ListNode(2);
-        node1.next = new ListNode(4);
-        node1.next.next = new ListNode(3);
+//        ListNode node1 = new ListNode(2);
+//        node1.next = new ListNode(4);
+//        node1.next.next = new ListNode(3);
+//
+//        ListNode node2 = new ListNode(5);
+//        node2.next = new ListNode(6);
+//        node2.next.next = new ListNode(4);
 
-        ListNode node2 = new ListNode(5);
-        node2.next = new ListNode(6);
-        node2.next.next = new ListNode(4);
+//        ListNode node1 = new ListNode(5);
+//        ListNode node2 = new ListNode(5);
+
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(8);
 
         ListNode result = addTwoNumbers(node1,node2);
         while(result!=null){
