@@ -21,9 +21,38 @@ import java.util.List;
 @Slf4j
 public class Solution_6 {
 
+    /**
+     * 关键点是 分行且如何决定特定的行数
+     */
     public static String convert(String s, int numRows) {
 
-        return null;
+        if(numRows<2){
+            return s;
+        }
+
+        List<StringBuilder> lists = new ArrayList<StringBuilder>();
+        // 初始化3个StringBuilder
+        for(int i =0;i<numRows;i++){
+            lists.add(new StringBuilder());
+        }
+
+        int curRow = 0;
+        boolean goingDown = false;
+
+
+        for(int i =0;i<s.length();i++){
+            lists.get(curRow).append(s.charAt(i));
+            if(curRow==0 || curRow==numRows-1){
+                goingDown = !goingDown;
+            }
+            curRow += goingDown?1:-1;
+        }
+
+        String result = "";
+        for(StringBuilder sb:lists){
+            result = result.concat(sb.toString());
+        }
+        return result;
     }
 
     public static void main(String[] args) {
