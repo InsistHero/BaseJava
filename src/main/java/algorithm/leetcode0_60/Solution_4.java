@@ -22,33 +22,46 @@ import java.util.HashSet;
 @Slf4j
 public class Solution_4 {
 
+    /**
+     * len = 5
+     * i=0 [0,0] [1,1] [2,2] [3,3]  <5-i
+     * i=1 [0,1] [1,2] [2,3]        <5-i
+     * i=2 [0,2] [1,3]              <5-i
+     *
+     */
     public static String longestPalindrome(String s) {
+
         if (s == null || s.length() < 1) {
             return "";
         }
-        int start = 0, end = 0;
-        for (int i = 0; i < s.length(); i++) {
-            int len1 = expandAroundCenter(s, i, i);
-            int len2 = expandAroundCenter(s, i, i + 1);
-            int len = Math.max(len1, len2);
-            if (len > end - start) {
-                start = i - (len - 1) / 2;
-                end = i + len / 2;
+
+        int len = s.length();
+        String ans = "";
+        boolean[][] equals = new boolean[len][len];
+
+        for(int i=0;i<len;i++){ //步长
+            for(int j=0;j<len-i;j++){
+                if(i==0){ //初始化对角线
+                    equals[j][j+i] = true;
+                }else if(i==1){ // 初始化步长为1的记录
+                    equals[j][j+i] = s.charAt(j)==s.charAt(j+i)?true:false;
+                }else{// 初始化 非对角线或者步长不为1的记录
+                    equals[j][j+i] = equals[j+1][j+i-1] && s.charAt(j)==s.charAt(j+i);
+                }
+                if(equals[j][j+i] && i+1>ans.length()){
+                    ans = s.substring(j,j+i+1);
+                }
             }
         }
-        return s.substring(start, end + 1);
-    }
 
-    public static int expandAroundCenter(String s, int left, int right) {
-        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
-            --left;
-            ++right;
-        }
-        return right - left - 1;
+        return ans;
     }
 
     public static void main(String[] args) {
         String s = "babad";
+        //String s = "a";
+        //String s = "bb";
+
         String result = longestPalindrome(s);
         log.info("result:{}",result);
     }
