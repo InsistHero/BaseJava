@@ -20,7 +20,7 @@ import java.util.HashSet;
  *
  */
 @Slf4j
-public class Solution_4 {
+public class Solution_5 {
 
     /**
      * len = 5
