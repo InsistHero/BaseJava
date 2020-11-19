@@ -57,29 +57,30 @@ public class Solution_17 {
             put('9',"wxyz");
         }
         };
-
-        backtrack(combinations, phoneMap, digits, 0, new StringBuffer());
+        backtrack(phoneMap,combinations,digits,0,new StringBuffer());
         return combinations;
     }
 
-    public void backtrack(List<String> combinations, Map<Character, String> phoneMap, String digits, int index, StringBuffer combination) {
-        if (index == digits.length()) {
+    // 23
+    // 巧妙之处在于index 为0及递归里的终止条件 index==digits.length()
+    private void backtrack(Map<Character, String> phoneMap,List<String> combinations,String digits, int index, StringBuffer combination) {
+        if(index==digits.length()){
             combinations.add(combination.toString());
-        } else {
-            char digit = digits.charAt(index);
-            String letters = phoneMap.get(digit);
-            int lettersCount = letters.length();
-            for (int i = 0; i < lettersCount; i++) {
-                combination.append(letters.charAt(i));
-                backtrack(combinations, phoneMap, digits, index + 1, combination);
+        }else{
+            Character ch = digits.charAt(index);
+            String values = phoneMap.get(ch);
+            for(int i=0;i<values.length();i++){
+                combination.append(values.charAt(i));
+                backtrack(phoneMap,combinations,digits,index+1,combination);
                 combination.deleteCharAt(index);
             }
         }
     }
 
+
     public static void main(String[] args) {
         Solution_17 solution17 = new Solution_17();
-        List<String> str = solution17.letterCombinations("234");
+        List<String> str = solution17.letterCombinations("23");
         log.info("str:{}",str);
     }
 }
